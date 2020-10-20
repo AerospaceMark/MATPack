@@ -41,7 +41,7 @@ function addPackage(pathToPackage,packageName)
         disp(strcat("Cloning ",pathToPackage," into ",userpath))
         
         if nargin < 2
-            separators = strfind(pathToPackage,filesep); % Find all of the file separators
+            separators = strfind(pathToPackage,'/'); % Find all of the file separators
             finalSlash = separators(end); % Choose the final file separator
             packageName = pathToPackage(finalSlash + 1:end - 4); % Take the text after the final
                                                                  % file separator and before
