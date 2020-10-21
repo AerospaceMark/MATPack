@@ -13,9 +13,9 @@
 % Author: Mark C. Anderson
 % Institution: Brigham Young University
 
-function usePackage(packageName,)
+function usePackage(packageName)
 
-     % 1. Seeing if the package exists in the user directory (Documents/MATLAB)
+    % 1. Seeing if the package exists in the user directory (Documents/MATLAB)
     if isfolder(strcat(userpath,filesep,packageName))
         addpath(genpath(strcat(userpath,filesep,packageName)));
         disp(strcat('Added: ',strcat(userpath,filesep,packageName)))
