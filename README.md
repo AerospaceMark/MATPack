@@ -103,25 +103,25 @@ forgetPackage('ArrayAnalysis')
 forgetPackage('C:/Users/Joe/Desktop/Code/ArrayAnalysis')
 ```
 
-## removePackage
+## removePackage()
 ```MATLAB
 removePackage(packageName)
 ```
 This function deletes a package from your Documents/MATLAB path.
 
-## openPackage
+## openPackage()
 ```MATLAB
 openPackage(packageName)
 ```
 This function changes your current MATLAB path to be inside the named package.
 
-## updatePackage
+## updatePackage()
 ```MATLAB
 updatePackage(packageName)
 ```
 This function pulls the latest updates from the package's online Git repository.
 
-## commitPackage
+## commitPackage()
 ```MATLAB
 commitPackage(packageName,commitMessage)
 ```
@@ -131,7 +131,7 @@ This function stages and commits all of your changes to the named package.
 updatePackage('ArrayAnalysis','Added header comments')
 ```
 
-## pushPackage
+## pushPackage()
 ```MATLAB
 pushPackage(packageName)
 ```
