@@ -1,3 +1,6 @@
+% Purpose: To do a 'pull' on any package that is connected to an online Git
+% repository
+
 function updatePackage(packageName)
     
     packageName = convertCharsToStrings(packageName);
