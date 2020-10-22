@@ -55,7 +55,7 @@ removePackage('ArrayAnalysis') % deletes a package completely from your computer
 ```MATLAB
 openPackage('ArrayAnalysis') % Changes your current MATLAB path to be inside of the
                              % 'ArrayAnalysis' package.
-``
+```
 
 # What do all the functions do?
 
