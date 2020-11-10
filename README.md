@@ -75,18 +75,28 @@ This function adds new MATLAB packages to your possible package directory. This 
 ## usePackage()
 
 ```MATLAB
-usePackage(packageName)
+usePackage(packageName,commitID)
 ```
 This function looks for a MATLAB package, and then adds it to your current MATLAB path. Note that when you add a package using the `addpackage()` function, the package becomes available to be added to your current path, but it is not actually added until you use the `usePackage()` command. This can also be used in two ways:
 
 1. Add a package directly from the Documents/MATLAB path. In this case the `packageName` input is simply the name of the package.
 ```MATLAB
-usePackage('ArrayAnalysis')
+usePackage('ArrayAnalysis','300a12c')
 ```
 2. Add a package from somewhere else on your computer. In this case the `packageName` input is the absolute path to the package on your computer.
 ```MATLAB
-usePackage('C:/Users/Joe/Desktop/Code/ArrayAnalysis')
+usePackage('C:/Users/Joe/Desktop/Code/ArrayAnalysis','master')
 ```
+
+The second argument specifies the particular commit that you'd like to be using. It finds the package and then checks out the commit. Note that when you change which commit you are using then it is changed on your computer and other scripts may be affected. For this reason it is a good idea to reset your commit to be on 'master' when you're finished. If no second argument is given, then the default is 'master'.
+
+## packageStatus
+
+```MATLAB
+packageStatus(packageName)
+```
+
+This function looks for a MATLAB package, and then tells you it's status. This information will tell you what commit and branch you are on, as well as whether there are uncommitted changes.
 
 ## forgetPackage()
 ```MATLAB
