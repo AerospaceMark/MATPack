@@ -36,12 +36,15 @@ updatePackage('ArrayAnalysis') % gets the latest updates in the online Git repos
 %--- Let's pretend you made some changes to the 'ArrayAnalysis' package after updating it, and you want 
 %    those to be posted to the online Git repository
 
+packageStatus('ArrayAnalysis') % tells you what branch and commit you are currently on
+                               % as well as what changes have been made but not yet committed
+
 commitPackage('ArrayAnalysis','Improved function legibility') % stages and commits all of your latest 
                                                               % changes with the commit message 
                                                               % 'Improved function legibility'
 
 pushPackage('ArrayAnalysis') % pushes your commits to the online Git repository 
-                             % (assuming you have access to edit the online repository)
+                             % (assuming you have access to edit the online repository)                             
 ```
 
 ## Removing Packages
