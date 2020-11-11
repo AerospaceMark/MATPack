@@ -65,15 +65,11 @@ openPackage('ArrayAnalysis') % Changes your current MATLAB path to be inside of 
 ## Creating a Manifest File
 A `Manifest` file contains a list of packages and commit IDs. This enables **full reproducibility** in your code, even if different packages have changed. For example, the 'ArrayAnalysis' package might be structured like so:
 
-ArrayAnalysis
-
-  |-> src
-  
-  |-> test
-  
-  |-> docs
-  
-  README.md
+- ArrayAnalysis/
+  - src/
+  - test/
+  - docs/
+  - README.md
   
 Let's say that you wanted ArrayAnalysis to be dependent on the 'GeneralSignalProcessing' package. You would navigate to the 'ArrayAnalysis' package folder and type:
 
@@ -83,17 +79,12 @@ addToManifest('GeneralSignalProcessing')
 
 This will create a file called `Manifest.csv` in the main folder of 'ArrayAnalysis':
 
-ArrayAnalysis
-
-  |-> src
-  
-  |-> test
-  
-  |-> docs
-  
-  Manifest.csv
-  
-  README.md
+- ArrayAnalysis/
+  - src/
+  - test/
+  - docs/
+  - Manifest.csv
+  - README.md
   
 If you open the manifest file you will see that it has a column for the package name and another column for the commit ID. Unless specified, the commit ID will default to 'master'. 
 
