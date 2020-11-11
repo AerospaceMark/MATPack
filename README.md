@@ -60,6 +60,66 @@ openPackage('ArrayAnalysis') % Changes your current MATLAB path to be inside of 
                              % 'ArrayAnalysis' package.
 ```
 
+# Working with Manifest Files
+
+## Creating a Manifest File
+A `Manifest` file contains a list of packages and commit IDs. This enables **full reproducibility** in your code, even if different packages have changed. For example, the 'ArrayAnalysis' package might be structured like so:
+
+ArrayAnalysis
+  |-> src
+  |-> test
+  |-> docs
+  README.md
+  
+Let's say that you wanted ArrayAnalysis to be dependent on the 'GeneralSignalProcessing' package. You would navigate to the 'ArrayAnalysis' package folder and type:
+
+```MATLAB
+addToManifest('GeneralSignalProcessing')
+```
+
+This will create a file called `Manifest.csv` in the main folder of 'ArrayAnalysis':
+
+ArrayAnalysis
+  |-> src
+  |-> test
+  |-> docs
+  Manifest.csv
+  README.md
+  
+If you open the manifest file you will see that it has a column for the package name and another column for the commit ID. Unless specified, the commit ID will default to 'master'. 
+
+Let's say that you now want to add the 'SourceModels' package to the manifest file, but that you want to use a particular commit ID. You could type:
+
+```MATLAB
+addToManifest('SourceModels','4819100e4d348b00e0b8bca16ff0d164b7abb416')
+```
+
+The numbers are the particular commit ID for the commit that you want to use. You can use either the long or the short commit.
+
+It's important to note the differences between the different options for that second argument. You can type four different things:
+
+```MATLAB
+addToManifest('SourceModels')
+addToManifest('SourceModels','master')
+addToManifest('SourceModels','current')
+addToManifest('SourceModels',commitID)
+```
+
+Option 1 and 2 are equivalent. They will tell MATLAB to always grab the master branch, even if the package you're using has been updated. This makes development easy while you're working on multiple packages that use each other.
+
+Option 3 takes the current commitID and freezes the package. This means that if 'SourceModels' was updated that 'ArrayAnalysis' will not use the updates. This is good for projects that you want to set aside for an extended period of time and want it to run exactly the same way as when you left it, even if the other packages have been changed.
+
+Option 4 lets you put in either the long or the short commit ID for any point in the history of the package. This is good if a code update caught you by surprise and you want to force MATLAB to use the old version.
+
+## Using a Manifest File
+If the code you're working on has a `Manfiest.csv` file, then all you have to do to get all of the packages to obey it is type:
+
+```MATLAB
+instantiatePackages()
+```
+
+and MATLAB will automatically check out all of the proper versions of the packages. Note that checking out different commits of the packages for different coding projects works best if each project has its own `Manifest.csv` file, so that you always use the correct version of each package for each project.
+
 # What do all the functions do?
 
 ## addPackage()
