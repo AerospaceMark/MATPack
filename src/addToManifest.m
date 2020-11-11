@@ -8,7 +8,7 @@ function addToManifest(packageName,commitID)
     
     if strcmp(commitID,'current') % Get the information from within the .git folder
         gitInfo = readtable(strcat(userpath,filesep,packageName,filesep,'.git/logs/HEAD'),'delimiter',' ');
-        commitID = gitInfo{end,1};
+        commitID = gitInfo{end,2};
         commitID = commitID{1};
     end
     
@@ -17,24 +17,44 @@ function addToManifest(packageName,commitID)
 
     if isfile('Manifest.csv') % If the manifest file is in the current folder
         
-        fid = fopen('Manifest.csv','a');
+        path = 'Manifest.csv';
         
     elseif isfile(strcat('..',filesep,'ManifestFile.csv')) % If the manifest file
                                                            % is in the folder
                                                            % above
                                                        
-        fid = fopen(strcat('..',filesep,'Manifest.csv'),'a');
+        path = strcat('..',filesep,'Manifest.csv');
                                                        
     else % create the manifest file in the current folder
         
-        fid = fopen('Manifest.csv','a');
+        path = 'Manifest.csv';
+        
+        fid = fopen(path,'a');
         fprintf(fid,'%s,','Package Name');
         fprintf(fid,'%s','Commit ID');
+        fclose(fid);
         
     end
     
-    fprintf(fid,'\n %s,',packageName);
-    fprintf(fid,'%s',commitID);
-    fclose(fid);
+    manifest = readtable(path,'delimiter',',');
+    
+    packageData = [packageName,commitID];
+    
+    isPackage = false;
+    for i = 1:height(manifest)
+        
+        if strcmp(manifest{i,1},string(packageName))
+            isPackage = true;
+            manifest{i,2} = {packageData(2)};
+            
+        end
+        
+    end
+    
+    if ~isPackage
+        manifest = [manifest;table(packageData(1),packageData(2),'VariableNames',["PackageName","CommitID"])];
+    end
+    
+    writetable(manifest,path)
 
 end
