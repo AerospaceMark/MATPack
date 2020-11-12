@@ -3,7 +3,7 @@
 function addToManifest(packageName,commitID)
     
     if nargin < 2
-        commitID = 'master';
+        commitID = 'current';
     end
     
     if strcmp(commitID,'current') % Get the information from within the .git folder
