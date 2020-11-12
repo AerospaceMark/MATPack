@@ -56,5 +56,7 @@ function addToManifest(packageName,commitID)
     end
     
     writetable(manifest,path)
+    
+    disp(strcat("Added ",packageName," at ",commitID,"."))
 
 end
