@@ -153,7 +153,7 @@ usePackage('C:/Users/Joe/Desktop/Code/ArrayAnalysis','master')
 
 The second argument specifies the particular commit that you'd like to be using. It finds the package and then checks out the commit. Note that when you change which commit you are using then it is changed on your computer and other scripts may be affected. For this reason it is a good idea to reset your commit to be on 'master' when you're finished. If no second argument is given, then the default is 'master'.
 
-## packageStatus
+## packageStatus()
 
 ```MATLAB
 packageStatus(packageName)
