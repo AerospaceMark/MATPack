@@ -19,7 +19,7 @@ function usePackage(packageName,commitID)
 
     % 1. Seeing if the package exists in the user directory (Documents/MATLAB)
     if isfolder(strcat(userpath,filesep,packageName))
-        eval(strcat("!git -C ",userpath,filesep,packageName," checkout ",commitID));
+        eval(strcat("!git -C ",userpath,filesep,packageName," checkout ",commitID," -q"));
         addpath(genpath(strcat(userpath,filesep,packageName)));
         disp(strcat("Added: ",strcat(userpath,filesep,packageName," at ",commitID)))
     
