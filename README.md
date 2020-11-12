@@ -58,6 +58,9 @@ removePackage('ArrayAnalysis') % deletes a package completely from your computer
 ```MATLAB
 openPackage('ArrayAnalysis') % Changes your current MATLAB path to be inside of the
                              % 'ArrayAnalysis' package.
+                 
+setAllToMaster() % Checks out all of the packages within the userpath at the master 
+                 % branch
 ```
 
 # Working with Manifest Files
