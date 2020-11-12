@@ -10,7 +10,8 @@ function setAllToMaster()
         path = strcat(userpath,filesep,directoryInfo(i).name,filesep,'.git');
         
         if isfolder(path)
-            eval(strcat("!git -C ",userpath,filesep,directoryInfo(i).name," checkout master"))
+            eval(strcat("!git -C ",userpath,filesep,directoryInfo(i).name," checkout master -q"))
+            disp(strcat("Set the ",directoryInfo(i).name,"package to master."))
         end
         
     end
