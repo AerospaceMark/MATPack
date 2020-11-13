@@ -5,6 +5,7 @@ function instantiatePackages()
     
     disp('Forgetting all packages in the userpath to give you a nice, clean slate...')
     forgetAllPackages()
+    disp(' ')
     
     disp('Adding the packages that are specified in the Manfiest.csv file...')
 

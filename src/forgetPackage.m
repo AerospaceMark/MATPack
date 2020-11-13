@@ -18,7 +18,7 @@ function forgetPackage(packageName)
     % 1. Seeing if the package exists in the user directory (Documents/MATLAB)
     if isfolder(strcat(userpath,filesep,packageName))
         rmpath(genpath(strcat(userpath,filesep,packageName)));
-        disp(strcat('Forgotten: ',strcat(userpath,filesep,packageName)))
+        disp(strcat("Forgotten: ",strcat(userpath,filesep,packageName)))
     
     % 2. Seeing if the package exists elsewhere on the computer
     elseif isfolder(packageName)
