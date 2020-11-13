@@ -138,7 +138,7 @@ This function adds new MATLAB packages to your possible package directory. This 
 1. Clone an online Git repository to your Documents/MATLAB folder.
 - In this case, the `pathToPackage` input is a cloning URL, which you get from the website for any online Git repository (like this one!).
 - The `packageName` input is optional, and is for renaming the package to your own custom name. (ie. if you wanted to add a package originally called `general-signal-processing` and wanted to call it just `SignalAnalysis`, you would type `SignalAnalysis` in the `packageName` input. 
-2. Copy a package from any location on your computer to the Documents/MATLAB folder.
+2. Copy a package from any location on your computer to the Documents/MATLAB folder. **Note, however, that support for packages outside the Documents/MATLAB folder is limited. It is recommended that you always keep your packages stored in the Documents/MATLab folder.**
 - In this case, the `pathToPackage` is the absolute path on your computer to the package. The packageName option is not usable in this condition.
 
 ## usePackage()
