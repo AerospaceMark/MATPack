@@ -61,6 +61,9 @@ openPackage('ArrayAnalysis') % Changes your current MATLAB path to be inside of 
                  
 setAllToMaster() % Checks out all of the packages within the userpath at the master 
                  % branch
+                 
+forgetAllPackages() % Removes all of the packages in the userpath (Documents/MATLAB)
+                    % from the current MATLAB path
 ```
 
 # Working with Manifest Files
@@ -89,9 +92,9 @@ This will create a file called `Manifest.csv` in the main folder of 'ArrayAnalys
   - Manifest.csv
   - README.md
   
-If you open the manifest file you will see that it has a column for the package name and another column for the commit ID. Unless specified, the commit ID will default to 'master'. 
+If you open the manifest file you will see that it has a column for the package name and another column for the commit ID. Unless specified, the commit ID will default to whatever the current commit of that package is. 
 
-Let's say that you now want to add the 'SourceModels' package to the manifest file, but that you want to use a particular commit ID. You could type:
+Let's say that you now want to add the 'SourceModels' package to the manifest file, but that you want to specify a particular commit ID. You could type:
 
 ```MATLAB
 addToManifest('SourceModels','4819100e4d348b00e0b8bca16ff0d164b7abb416')
@@ -121,7 +124,7 @@ If the code you're working on has a `Manfiest.csv` file, then all you have to do
 instantiatePackages()
 ```
 
-and MATLAB will automatically check out all of the proper versions of the packages. Note that checking out different commits of the packages for different coding projects works best if each project has its own `Manifest.csv` file, so that you always use the correct version of each package for each project.
+and MATLAB will automatically use the `forgetAllPackages()` function to remove all packages from the current path and then automatically check out all of the proper versions of the packages specified in the `Manifest.csv` file. Note that checking out different commits of the packages for different coding projects works best if each project has its own `Manifest.csv` file, so that you always use the correct version of each package for each project.
 
 # What do all the functions do?
 
@@ -135,7 +138,7 @@ This function adds new MATLAB packages to your possible package directory. This 
 1. Clone an online Git repository to your Documents/MATLAB folder.
 - In this case, the `pathToPackage` input is a cloning URL, which you get from the website for any online Git repository (like this one!).
 - The `packageName` input is optional, and is for renaming the package to your own custom name. (ie. if you wanted to add a package originally called `general-signal-processing` and wanted to call it just `SignalAnalysis`, you would type `SignalAnalysis` in the `packageName` input. 
-2. Copy a package from any location on your computer to the Documents/MATLAB folder.
+2. Copy a package from any location on your computer to the Documents/MATLAB folder. **Note, however, that support for packages outside the Documents/MATLAB folder is limited. It is recommended that you always keep your packages stored in the Documents/MATLab folder.**
 - In this case, the `pathToPackage` is the absolute path on your computer to the package. The packageName option is not usable in this condition.
 
 ## usePackage()
