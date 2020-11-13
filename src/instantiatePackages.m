@@ -3,7 +3,7 @@
 
 function instantiatePackages()
     
-    disp('Forgetting all packages in the userpath to give you a nice, clean slate...')
+    disp('Forgetting all packages in the userpath (except for MATPack) to give you a nice, clean slate...')
     forgetAllPackages()
     disp(' ')
     
