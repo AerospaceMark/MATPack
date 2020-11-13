@@ -3,7 +3,7 @@ Welcome to the MATLAB Package Manager!
 
 MATPack is designed to make designing packages in MATLAB very user-friendly. The original motivation for MATPack came while working in a research group at Brigham Young University. We decided that we wanted to bundle our useful code into packages that future students and professors could easily access and use, very similar to Python and Julia packages and libraries.
 
-In order to use MATPack to its full potential, you need to install Git command line tools. This means being able to execute Git commands in your local terminal (for MacOS and Linux users) or in your local command prompt (for Windows users).
+In order to use MATPack, you need to install Git command line tools. This means being able to execute Git commands in your local terminal (for MacOS and Linux users) or in your local command prompt ([for Windows users](https://stackoverflow.com/questions/11000869/command-line-git-on-windows)).
 
 # How to start using MATPack
 
@@ -103,14 +103,14 @@ It's important to note the differences between the different options for that se
 
 ```MATLAB
 addToManifest('SourceModels')
-addToManifest('SourceModels','master')
 addToManifest('SourceModels','current')
+addToManifest('SourceModels','master')
 addToManifest('SourceModels',commitID)
 ```
 
-Option 1 and 2 are equivalent. They will tell MATLAB to always grab the master branch, even if the package you're using has been updated. This makes development easy while you're working on multiple packages that use each other.
+Options 1 and 2 are equivalent. They take the current commitID and freeze the package. This means that if 'SourceModels' was updated that 'ArrayAnalysis' will not use the updates. This enables a high degree of reproducibility because if you commit frequently then you have a record of which commits were being used. You can then check out the 'ArrayAnalysis' package at a different commit and then `instantiate` (described below) the packages as they all were at the time you made that commit.
 
-Option 3 takes the current commitID and freezes the package. This means that if 'SourceModels' was updated that 'ArrayAnalysis' will not use the updates. This is good for projects that you want to set aside for an extended period of time and want it to run exactly the same way as when you left it, even if the other packages have been changed.
+Option 3 will tell MATLAB to always grab the master branch, even if the package you're using has been updated. This makes development easy while you're working on multiple packages that use each other, though is not good for reproducibility down the road because specific commits are never given.
 
 Option 4 lets you put in either the long or the short commit ID for any point in the history of the package. This is good if a code update caught you by surprise and you want to force MATLAB to use the old version.
 
