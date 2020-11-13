@@ -102,12 +102,13 @@ addToManifest('SourceModels','4819100e4d348b00e0b8bca16ff0d164b7abb416')
 
 The numbers are the particular commit ID for the commit that you want to use. You can use either the long or the short commit.
 
-It's important to note the differences between the different options for that second argument. You can type four different things:
+It's important to note the differences between the different options for that second argument. You can type five different things:
 
 ```MATLAB
 addToManifest('SourceModels')
 addToManifest('SourceModels','current')
 addToManifest('SourceModels','master')
+addToManifest('SourceModels',branchName)
 addToManifest('SourceModels',commitID)
 ```
 
@@ -115,7 +116,9 @@ Options 1 and 2 are equivalent. They take the current commitID and freeze the pa
 
 Option 3 will tell MATLAB to always grab the master branch, even if the package you're using has been updated. This makes development easy while you're working on multiple packages that use each other, though is not good for reproducibility down the road because specific commits are never given.
 
-Option 4 lets you put in either the long or the short commit ID for any point in the history of the package. This is good if a code update caught you by surprise and you want to force MATLAB to use the old version.
+Option 4 will tell MATLAB to always grab the top commit of the branch that you specify. This is equivalent to option 3, you're just using a branch other than master.
+
+Option 5 lets you put in either the long or the short commit ID for any point in the history of the package. This is good if a code update caught you by surprise and you want to force MATLAB to use the old version. This works for any commit on any branch.
 
 ## Using a Manifest File
 If the code you're working on has a `Manfiest.csv` file, then all you have to do to get all of the packages to obey it is type:
@@ -215,3 +218,17 @@ updatePackage('ArrayAnalysis','Added header comments')
 pushPackage(packageName)
 ```
 This function pushes all of your commits to the online Git repository for the named package.
+
+## createNewBranch()
+```MATLAB
+createNewbranch(packageName,branchName,includeRemote)
+```
+This function enables you to create new branches. The third argument is boolean (true/false) and tells MATLAB whether to create a remote branch too. The default is true.
+
+For the current release, the ability to merge and delete branches has not been included. These actions are more serious and if done improperly can lead to some large headaches. Therefore, for now, it is recommended that these actions be done either online, inside an interactive GUI, or directly on the command line. The command line can be directly accessed in MATLAB by prefacing commands with an exclamation point (!), like so:
+
+```MATLAB
+!git status
+!git commit -m "cool commit"
+!git merge
+```
