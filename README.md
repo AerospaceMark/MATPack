@@ -230,5 +230,5 @@ For the current release, the ability to merge and delete branches has not been i
 ```MATLAB
 !git status
 !git commit -m "cool commit"
-!git merge
+!git branch -d testbranch
 ```
