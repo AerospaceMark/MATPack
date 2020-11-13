@@ -2,6 +2,11 @@
 % them out at the proper commits
 
 function instantiatePackages()
+    
+    disp('Forgetting all packages in the userpath to give you a nice, clean slate...')
+    forgetAllPackages()
+    
+    disp('Adding the packages that are specified in the Manfiest.csv file...')
 
     if isfile('Manifest.csv') % If the manifest file is in the current folder
         

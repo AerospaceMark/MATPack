@@ -14,7 +14,7 @@
 % Institution: Brigham Young University
 
 function forgetPackage(packageName)
-
+    
     % 1. Seeing if the package exists in the user directory (Documents/MATLAB)
     if isfolder(strcat(userpath,filesep,packageName))
         rmpath(genpath(strcat(userpath,filesep,packageName)));
