@@ -92,9 +92,9 @@ This will create a file called `Manifest.csv` in the main folder of 'ArrayAnalys
   - Manifest.csv
   - README.md
   
-If you open the manifest file you will see that it has a column for the package name and another column for the commit ID. Unless specified, the commit ID will default to 'master'. 
+If you open the manifest file you will see that it has a column for the package name and another column for the commit ID. Unless specified, the commit ID will default to whatever the current commit of that package is. 
 
-Let's say that you now want to add the 'SourceModels' package to the manifest file, but that you want to use a particular commit ID. You could type:
+Let's say that you now want to add the 'SourceModels' package to the manifest file, but that you want to specify a particular commit ID. You could type:
 
 ```MATLAB
 addToManifest('SourceModels','4819100e4d348b00e0b8bca16ff0d164b7abb416')
