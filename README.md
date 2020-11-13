@@ -61,6 +61,9 @@ openPackage('ArrayAnalysis') % Changes your current MATLAB path to be inside of 
                  
 setAllToMaster() % Checks out all of the packages within the userpath at the master 
                  % branch
+                 
+forgetAllPackages() % Removes all of the packages in the userpath (Documents/MATLAB)
+                    % from the current MATLAB path
 ```
 
 # Working with Manifest Files
@@ -121,7 +124,7 @@ If the code you're working on has a `Manfiest.csv` file, then all you have to do
 instantiatePackages()
 ```
 
-and MATLAB will automatically check out all of the proper versions of the packages. Note that checking out different commits of the packages for different coding projects works best if each project has its own `Manifest.csv` file, so that you always use the correct version of each package for each project.
+and MATLAB will automatically use the `forgetAllPackages()` function to remove all packages from the current path and then automatically check out all of the proper versions of the packages specified in the `Manifest.csv` file. Note that checking out different commits of the packages for different coding projects works best if each project has its own `Manifest.csv` file, so that you always use the correct version of each package for each project.
 
 # What do all the functions do?
 
