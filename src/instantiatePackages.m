@@ -28,8 +28,8 @@ function instantiatePackages()
     
     % Adding the current path
     pathToCurrentPackage = strcat(userpath,filesep,currentPackage);
+    disp(strcat("Adding: ",pathToCurrentPackage," at it's current state (not a commit)"));
     addpath(genpath(pathToCurrentPackage));
-    disp(strcat("Added: ",pathToCurrentPackage," at it's current state (not a commit)"));
     
 end
 
