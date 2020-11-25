@@ -3,7 +3,13 @@
 
 function updateManifest()
     
-    manifest = readtable('Manifest.csv','delimiter',',');
+    % Getting the name of the current package
+    currentPackage = getCurrentPackage; % The package from which you are
+                                            % calling the manifest file
+    
+    pathToManifest = strcat(userpath,filesep,currentPackage,filesep,'Manifest.csv');
+
+    manifest = readtable(pathToManifest,'delimiter',',');
     
     for i = 1:height(manifest)
     

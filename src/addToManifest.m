@@ -13,11 +13,7 @@ function addToManifest(packageName,commitID)
     end
     
     if strcmp(commitID,'current') % Get the information from within the .git folder
-        f = fopen(strcat(userpath,filesep,packageName,filesep,'.git/logs/HEAD'));
-        gitInfo = textscan(f,'%s %s %*[^\n]');
-        fclose(f);
-        commitID = gitInfo{2};
-        commitID = commitID{end};
+        commitID = getCommitID(packageName);
     end
     
     packageName = string(packageName);
