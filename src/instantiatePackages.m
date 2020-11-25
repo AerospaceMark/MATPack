@@ -31,6 +31,10 @@ function instantiatePackages()
     disp(strcat("Adding: ",pathToCurrentPackage," at it's current state (not a commit)"));
     addpath(genpath(pathToCurrentPackage));
     
+    disp(' ')
+    disp('Done adding all packages from the Manifest.csv file.')
+    disp(' ')
+    
 end
 
 function getPackages(packageInfo,currentPackage)
