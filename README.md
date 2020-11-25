@@ -64,6 +64,10 @@ setAllToMaster() % Checks out all of the packages within the userpath at the mas
                  
 forgetAllPackages() % Removes all of the packages in the userpath (Documents/MATLAB)
                     % from the current MATLAB path
+                    
+updateAllPackages() % Updates all of the packages in your userpath
+
+updateAllManifests() % Updates all package manifest files within your userpath
 ```
 
 # Working with Manifest Files
