@@ -2,7 +2,9 @@
 
 function updateAllPackages()
     
-    disp(' ')
+    % Setting all to master to avoid pull issues
+    setAllToMaster()
+
     disp('Updating all packages...')
     disp(' ')
 

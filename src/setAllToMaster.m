@@ -3,6 +3,10 @@
 
 function setAllToMaster()
 
+    disp(' ')
+    disp("Setting all packages to 'master'...")
+    disp(' ')
+
     directoryInfo = dir(userpath);
     
     for i = 1:length(directoryInfo)
@@ -10,10 +14,14 @@ function setAllToMaster()
         path = strcat(userpath,filesep,directoryInfo(i).name,filesep,'.git');
         
         if isfolder(path)
+            disp(strcat("Setting the '",directoryInfo(i).name,"' package to master."))
             eval(strcat("!git -C ",userpath,filesep,directoryInfo(i).name," checkout master -q"))
-            disp(strcat("Set the '",directoryInfo(i).name,"' package to master."))
         end
         
     end
+    
+    disp(' ')
+    disp("Done setting all packages to 'master'.")
+    disp(' ')
 
 end
