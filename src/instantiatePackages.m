@@ -8,51 +8,39 @@ function instantiatePackages()
     disp(' ')
     
     disp('Adding the packages that are specified in the Manfiest.csv file...')
-
-    if isfile('Manifest.csv') % If the manifest file is in the current folder
+    
+    % Getting the name of the current package
+    currentPackage = getCurrentPackage; % The package from which you are
+                                            % calling the manifest file
+    
+    pathToManifest = strcat(userpath,filesep,currentPackage,filesep,'Manifest.csv');
+                                            
+    if isfile(pathToManifest) % If the manifest file is in the current folder
         
-        packageInfo = readtable('Manifest.csv');
-        getPackages(packageInfo)
-        
-    elseif isfile(strcat('..',filesep,'ManifestFile.csv')) % If the manifest file
-                                                           % is in the folder
-                                                           % above
-                                                       
-        packageInfo = readtable(strcat('..',filesep,'Manifest.csv'));
-        getPackages(packageInfo)
-        
-    elseif isfile(strcat('..',filesep,'..',filesep,'ManifestFile.csv')) % If the manifest file
-                                                       % is in the folder
-                                                       % above the folder
-                                                       % above
-
-    packageInfo = readtable(strcat('..',filesep,'..',filesep,'Manifest.csv'));
-    getPackages(packageInfo)
+        packageInfo = readtable(pathToManifest);
+        getPackages(packageInfo,currentPackage)
                                                        
     else % Return an error
         
-        disp('Error: No manifest file found in this path or in the directory above.')
+        disp('Error: No manifest file found')
         
     end
     
-    % Add the current package (from which you are calling the manifest file
-    currentPackage = getCurrentPackage; % The package from which you are
-                                            % calling the manifest file
+    % Adding the current path
     pathToCurrentPackage = strcat(userpath,filesep,currentPackage);
-    addPath(genPath(pathToCurrentPackage));
+    addpath(genpath(pathToCurrentPackage));
+    disp(strcat("Added: ",pathToCurrentPackage," at it's current state (not a commit)"));
     
 end
 
-function getPackages(packageInfo)
+function getPackages(packageInfo,currentPackage)
 
     for i = 1:height(packageInfo)
         
         thisPackage = packageInfo{i,1:2};
         packageName = thisPackage{1};
         commitID = thisPackage{2};
-        
-        
-        
+               
         if ~strcmp(packageName,currentPackage)
             usePackage(packageName,commitID);
         end

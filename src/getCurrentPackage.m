@@ -8,6 +8,10 @@ function packageName = getCurrentPackage()
     
     separators = strfind(fullPackageName,filesep);
     
-    packageName = fullPackageName(1:separators(1)-1);
+    if length(separators) > 0 % If there is a separator
+        packageName = fullPackageName(1:separators(1)-1);
+    else
+        packageName = fullPackageName(1:end);
+    end
 
 end

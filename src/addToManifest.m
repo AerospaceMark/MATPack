@@ -2,6 +2,12 @@
 
 function addToManifest(packageName,commitID)
     
+    % Getting the name of the current package
+    currentPackage = getCurrentPackage; % The package from which you are
+                                            % calling the manifest file
+    
+    pathToManifest = strcat(userpath,filesep,currentPackage,filesep,'Manifest.csv');
+
     if nargin < 2
         commitID = 'current';
     end
@@ -17,28 +23,16 @@ function addToManifest(packageName,commitID)
     packageName = string(packageName);
     commitID = string(commitID);
 
-    if isfile('Manifest.csv') % If the manifest file is in the current folder
+    if ~isfile(pathToManifest) % If the manifest file is in the current folder
         
-        path = 'Manifest.csv';
-        
-    elseif isfile(strcat('..',filesep,'ManifestFile.csv')) % If the manifest file
-                                                           % is in the folder
-                                                           % above
-                                                       
-        path = strcat('..',filesep,'Manifest.csv');
-                                                       
-    else % create the manifest file in the current folder
-        
-        path = 'Manifest.csv';
-        
-        fid = fopen(path,'a');
+        fid = fopen(pathToManifest,'a');
         fprintf(fid,'%s,','Package Name');
         fprintf(fid,'%s','Commit ID');
         fclose(fid);
         
     end
     
-    manifest = readtable(path,'delimiter',',');
+    manifest = readtable(pathToManifest,'delimiter',',');
     
     packageData = [packageName,commitID];
     
@@ -57,7 +51,7 @@ function addToManifest(packageName,commitID)
         manifest = [manifest;table(packageData(1),packageData(2),'VariableNames',["PackageName","CommitID"])];
     end
     
-    writetable(manifest,path)
+    writetable(manifest,pathToManifest)
     
     disp(strcat("Added ",packageName," at ",commitID,"."))
 
