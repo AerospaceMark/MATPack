@@ -129,6 +129,14 @@ instantiatePackages()
 
 and MATLAB will automatically use the `forgetAllPackages()` function to remove all packages from the current path and then automatically check out all of the proper versions of the packages specified in the `Manifest.csv` file. Note that checking out different commits of the packages for different coding projects works best if each project has its own `Manifest.csv` file, so that you always use the correct version of each package for each project.
 
+When you know that you have made several changes to the packages upon which your current code depends, use the `updateManifest` function:
+
+```MATLAB
+updateManifest()
+```
+
+You must be in the same folder as the manifest file. This function will read the manifest file, checkout each package at the top of the master branch, and then replace the previous commit ID with the commit ID that corresponds to the current top of the master branch. This is different than using the `master` option when adding packages to the manifest file because the actual commit ID is used and therefore the manifest file will not track changes in the master branch of the dependencies, and you will need to update the manifest file as pertinent changes are made to the dependencies.
+
 # What do all the functions do?
 
 ## addPackage()
