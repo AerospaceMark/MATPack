@@ -1,6 +1,10 @@
 % Purpose: To forget all packages from the Documents/MATLAB folder
 
 function forgetAllPackages()
+    
+    disp(' ')
+    disp('Forgetting all packages...')
+    disp(' ')
 
     directoryInfo = dir(userpath);
     warning('off','MATLAB:rmpath:DirNotFound')
@@ -14,5 +18,9 @@ function forgetAllPackages()
         
     end
     warning('on','MATLAB:rmpath:DirNotFound')
+    
+    disp(' ')
+    disp('Done forgetting all packages (except MATPack).')
+    disp(' ')
 
 end

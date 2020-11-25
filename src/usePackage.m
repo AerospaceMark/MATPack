@@ -17,6 +17,10 @@ function usePackage(packageName,commitID,quietFlag)
         quietFlag = false;
     end
     
+    if ~quietFlag
+            disp(strcat("Adding: ",strcat(userpath,filesep,packageName," at ",commitID)))
+    end
+    
     % Seeing if the commitID given is equal to the commitID for the master
     % branch
     
@@ -39,9 +43,6 @@ function usePackage(packageName,commitID,quietFlag)
         
         eval(strcat("!git -C ",userpath,filesep,packageName," checkout ",commitID," -q"));
         addpath(genpath(strcat(userpath,filesep,packageName)));
-        if ~quietFlag
-            disp(strcat("Added: ",strcat(userpath,filesep,packageName," at ",commitID)))
-        end
    
     else
         disp('Package not found, please add the package to your user path, or check the name.')

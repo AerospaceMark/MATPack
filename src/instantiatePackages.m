@@ -8,6 +8,7 @@ function instantiatePackages()
     disp(' ')
     
     disp('Adding the packages that are specified in the Manfiest.csv file...')
+    disp(' ')
     
     % Getting the name of the current package
     currentPackage = getCurrentPackage; % The package from which you are
