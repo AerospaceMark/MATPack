@@ -20,12 +20,26 @@ function instantiatePackages()
                                                        
         packageInfo = readtable(strcat('..',filesep,'Manifest.csv'));
         getPackages(packageInfo)
+        
+    elseif isfile(strcat('..',filesep,'..',filesep,'ManifestFile.csv')) % If the manifest file
+                                                       % is in the folder
+                                                       % above the folder
+                                                       % above
+
+    packageInfo = readtable(strcat('..',filesep,'..',filesep,'Manifest.csv'));
+    getPackages(packageInfo)
                                                        
     else % Return an error
         
         disp('Error: No manifest file found in this path or in the directory above.')
         
     end
+    
+    % Add the current package (from which you are calling the manifest file
+    currentPackage = getCurrentPackage; % The package from which you are
+                                            % calling the manifest file
+    pathToCurrentPackage = strcat(userpath,filesep,currentPackage);
+    addPath(genPath(pathToCurrentPackage));
     
 end
 
@@ -37,7 +51,11 @@ function getPackages(packageInfo)
         packageName = thisPackage{1};
         commitID = thisPackage{2};
         
-        usePackage(packageName,commitID);
+        
+        
+        if ~strcmp(packageName,currentPackage)
+            usePackage(packageName,commitID);
+        end
         
     end
 
