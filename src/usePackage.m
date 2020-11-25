@@ -7,10 +7,14 @@
 % Author: Mark C. Anderson
 % Institution: Brigham Young University
 
-function usePackage(packageName,commitID)
+function usePackage(packageName,commitID,quietFlag)
     
     if nargin < 2
         commitID = "master";
+    end
+    
+    if nargin < 3
+        quietFlag = false;
     end
     
     % Seeing if the commitID given is equal to the commitID for the master
@@ -35,7 +39,9 @@ function usePackage(packageName,commitID)
         
         eval(strcat("!git -C ",userpath,filesep,packageName," checkout ",commitID," -q"));
         addpath(genpath(strcat(userpath,filesep,packageName)));
-        disp(strcat("Added: ",strcat(userpath,filesep,packageName," at ",commitID)))
+        if ~quietFlag
+            disp(strcat("Added: ",strcat(userpath,filesep,packageName," at ",commitID)))
+        end
    
     else
         disp('Package not found, please add the package to your user path, or check the name.')

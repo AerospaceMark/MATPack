@@ -1,7 +1,11 @@
 % Purpose: to add to a manifest file, and create one if necessary
 
-function addToManifest(packageName,commitID)
+function addToManifest(packageName,commitID,quietFlag)
     
+    if nargin < 3
+        quietFlag = false;
+    end
+
     % Getting the name of the current package
     currentPackage = getCurrentPackage; % The package from which you are
                                             % calling the manifest file
@@ -49,6 +53,8 @@ function addToManifest(packageName,commitID)
     
     writetable(manifest,pathToManifest)
     
-    disp(strcat("Added ",packageName," at ",commitID,"."))
+    if ~quietFlag
+        disp(strcat("Added ",packageName," at ",commitID,"."))
+    end
 
 end

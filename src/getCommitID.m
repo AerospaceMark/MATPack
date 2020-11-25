@@ -1,4 +1,4 @@
-function commitID =  getCommitID(packageName)
+function commitID = getCommitID(packageName)
 
     f = fopen(strcat(userpath,filesep,packageName,filesep,'.git/logs/HEAD'));
     gitInfo = textscan(f,'%s %s %*[^\n]');
