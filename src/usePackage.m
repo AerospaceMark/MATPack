@@ -10,7 +10,7 @@
 function usePackage(packageName,commitID,quietFlag)
     
     if nargin < 2
-        commitID = "master";
+        commitID = getCommitID(packageName);
     end
     
     if nargin < 3
@@ -34,8 +34,6 @@ function usePackage(packageName,commitID,quietFlag)
     % Comparing the current commitID to the master commitID
     if currentID == masterID
         commitID = "master";
-    else
-        commitID = currentID;
     end
 
     % Seeing if the package exists in the user directory (Documents/MATLAB)
