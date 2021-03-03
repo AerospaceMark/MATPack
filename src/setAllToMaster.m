@@ -14,8 +14,29 @@ function setAllToMaster()
         path = strcat(userpath,filesep,directoryInfo(i).name,filesep,'.git');
         
         if isfolder(path)
-            disp(strcat("Setting the '",directoryInfo(i).name,"' package to master."))
-            eval(strcat("!git -C ",userpath,filesep,directoryInfo(i).name," checkout master -q"))
+            disp(strcat("Setting the '",directoryInfo(i).name,"' package to main."))
+            
+            command = strcat("git -C ",userpath,filesep,directoryInfo(i).name," checkout main");
+            
+            [successFlag, output] = runSystemCommand(command,false);
+            
+            % Perhaps the main branch is called "master" (old notation)
+            if ~successFlag
+                
+                command = strcat("git -C ",userpath,filesep,directoryInfo(i).name," checkout master");
+            
+                [successFlag, output] = runSystemCommand(command,false);
+                
+            end
+                
+            % If still not successful
+            if ~successFlag
+
+                disp('Error while updating the package. System output is:')
+                disp(output)
+
+            end
+            
         end
         
     end
