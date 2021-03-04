@@ -49,7 +49,7 @@ function getPackageList(package)
         
     end
     
-    for i = 1:length(packageList)
+    for i = 1:length(packageList(:,1))
         
         % Save the current width of the package list for use in indexing
         % later
@@ -87,9 +87,7 @@ function getPackageList(package)
                 end
             end
             
-        end
-        
-        
+        end 
        
     end
 
