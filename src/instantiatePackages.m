@@ -35,7 +35,7 @@ function getPackageList(package)
     dependencies = getDependencies(package);
     
     % Initializing the package list with some values
-    for i = 1:height(dependencies)
+    for i = 1:length(string(dependencies(:,1)))
         
         packageList(i+1,1) = string(dependencies(i,1));
         
@@ -43,7 +43,7 @@ function getPackageList(package)
     
     packageList(1,2) = string(package);
     
-    for i = 1:height(dependencies)
+    for i = 1:length(string(dependencies(:,1)))
         
         packageList(i+1,2) = string(dependencies(i,2));
         
@@ -53,7 +53,7 @@ function getPackageList(package)
         
         % Save the current width of the package list for use in indexing
         % later
-        listWidth = width(packageList);
+        listWidth = length(packageList(1,:));
         
         % If there is a package name there, get its dependencies
         if ~ismissing(packageList(i,1))
@@ -61,7 +61,7 @@ function getPackageList(package)
             dependencies = getDependencies(packageList(i,1));
             
             % Add the dependencies to the package list
-            for j = 1:height(dependencies)
+            for j = 1:length(dependencies(:,1))
 
                 % Find the location in the package list of the current
                 % dependency
