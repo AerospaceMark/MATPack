@@ -23,8 +23,9 @@ function addToManifest(packageName,commitID,quietFlag)
     packageName = string(packageName);
     commitID = string(commitID);
 
-    if ~isfile(pathToManifest) % If the manifest file is in the current folder
+    if ~isfile(pathToManifest) % If the manifest file does not exist
         
+        % Create the manifest file
         fid = fopen(pathToManifest,'a');
         fprintf(fid,'%s,','Package Name');
         fprintf(fid,'%s','Commit ID');
@@ -39,7 +40,11 @@ function addToManifest(packageName,commitID,quietFlag)
     isPackage = false;
     for i = 1:height(manifest)
         
+        % If the package you are trying to add already exists in the
+        % manifest file, then just replace that line in the file with the
+        % proper commit ID
         if strcmp(manifest{i,1},string(packageName))
+            
             isPackage = true;
             manifest{i,2} = {packageData(2)};
             
