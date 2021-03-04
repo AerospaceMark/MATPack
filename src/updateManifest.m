@@ -19,15 +19,14 @@ function updateManifest()
             % Getting the commitID for the top of the main branch
             commitID = [];
             
-            try
-                commitID = getTopCommit(packageName,'main');
-            catch
+            try % See if you can find the main branch
+                commitID = getTopCommit(packageName{1},'main');
+            catch % If not, try the master branch name instead
                 if isempty(commitID)
-                    commitID = getTopCommit(packageName,'master');
+                    commitID = getTopCommit(packageName{1},'master');
                 end
             end
             
-
             addToManifest(packageName{1},commitID,true);
 
         end
