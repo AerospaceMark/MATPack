@@ -1,9 +1,6 @@
 % Purpose: To update all of the packages in your user path
 
 function updateAllPackages()
-    
-    % Setting all to master to avoid pull issues
-    setAllToMaster()
 
     disp('Updating all packages...')
     disp(' ')
@@ -14,7 +11,7 @@ function updateAllPackages()
         path = strcat(userpath,filesep,directoryInfo(i).name);
         
         if isfolder(strcat(path,filesep,'.git'))
-            disp(strcat("Updating the '",directoryInfo(i).name,"' package."))
+            disp(strcat("- Updating the '",directoryInfo(i).name,"' package."))
             updatePackage(directoryInfo(i).name)
         end
         

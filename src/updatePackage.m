@@ -10,7 +10,7 @@ function updatePackage(packageName)
         
     if ~successFlag
 
-        disp(['Error while updating the ',packageName,' package. System output is:'])
+        disp(strcat('Error while updating the ',packageName,' package. System output is:'))
         disp(output)
 
     end
