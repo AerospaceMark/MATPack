@@ -15,8 +15,20 @@ function updateManifest()
         for i = 1:height(manifest)
 
             packageName = manifest{i,1};
-            usePackage(packageName{1},'master',true);
-            addToManifest(packageName{1},'current',true);
+            
+            % Getting the commitID for the top of the main branch
+            commitID = [];
+            
+            try
+                commitID = getTopCommit(packageName,'main');
+            catch
+                if isempty(commitID)
+                    commitID = getTopCommit(packageName,'master');
+                end
+            end
+            
+
+            addToManifest(packageName{1},commitID,true);
 
         end
         

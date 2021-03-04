@@ -12,5 +12,7 @@ function commitID = getTopCommit(packageName,branch)
     commitID = textscan(f,'%s %*[^\n]');
     commitID = commitID{1};
     commitID = commitID{1};
+    
+    fclose(f);
 
 end
