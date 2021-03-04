@@ -35,7 +35,7 @@ function getPackageList(package)
     dependencies = getDependencies(package);
     
     % Initializing the package list with some values
-    for i = 1:length(dependencies)
+    for i = 1:height(dependencies)
         
         packageList(i+1,1) = string(dependencies(i,1));
         
@@ -43,7 +43,53 @@ function getPackageList(package)
     
     packageList(1,2) = string(package);
     
+    for i = 1:height(dependencies)
+        
+        packageList(i+1,2) = string(dependencies(i,2));
+        
+    end
     
+    for i = 1:length(packageList)
+        
+        % Save the current width of the package list for use in indexing
+        % later
+        listWidth = width(packageList);
+        
+        % If there is a package name there, get its dependencies
+        if ~ismissing(packageList(i,1))
+            
+            dependencies = getDependencies(packageList(i,1));
+            
+            % Add the dependencies to the package list
+            for j = 1:height(dependencies)
+
+                % Find the location in the package list of the current
+                % dependency
+                index = contains(packageList,string(dependencies(j,1)));
+                
+                % Turn that position into indices that we can use
+                [row,~] = find(index,1);
+                
+                if ~isempty(row) % If the package already is in the list
+                    
+                    % Add a new column with the current package name (added
+                    % redundantly each time, there is a better way to do this)
+                    packageList(1,listWidth+1) = string(packageList(i,1));
+                    
+                    % Add the commit ID in the proper row and column
+                    packageList(row,listWidth+1) = string(dependencies(j,2));
+                
+                else % Add the package to the list
+                    
+                end
+
+            end
+            
+        end
+        
+        
+       
+    end
 
 end
 
