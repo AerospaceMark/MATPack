@@ -3,28 +3,19 @@
 
 function instantiatePackages()
     
-    disp('Forgetting all packages in the userpath (except for MATPack) to give you a nice, clean slate...')
-    forgetAllPackages()
-    
-    disp('Adding the packages that are specified in the Manfiest.csv file...')
-    disp(' ')
+%     disp('Forgetting all packages in the userpath (except for MATPack) to give you a nice, clean slate...')
+%     forgetAllPackages()
+%     
+%     disp('Adding the packages that are specified in the Manfiest.csv file...')
+%     disp(' ')
     
     % Getting the name of the current package
     currentPackage = getCurrentPackage; % The package from which you are
                                             % calling the manifest file
-    
-    pathToManifest = strcat(userpath,filesep,currentPackage,filesep,'Manifest.csv');
                                             
-    if isfile(pathToManifest) % If the manifest file is in the current folder
-        
-        packageInfo = readtable(pathToManifest);
-        getPackages(packageInfo,currentPackage)
-                                                       
-    else % Return an error
-        
-        disp('Error: No manifest file found')
-        
-    end
+    getPackageList(currentPackage)
+    
+    
     
     % Adding the current path
     pathToCurrentPackage = strcat(userpath,filesep,currentPackage);
@@ -35,6 +26,42 @@ function instantiatePackages()
     disp('Done adding all packages from the Manifest.csv file.')
     disp(' ')
     
+end
+
+function getPackageList(package)
+
+    % Get the dependencies from the package from which you are
+    % instantiating
+    dependencies = getDependencies(package);
+    
+    % Initializing the package list with some values
+    for i = 1:length(dependencies)
+        
+        packageList(i+1,1) = string(dependencies(i,1));
+        
+    end
+    
+    packageList(1,2) = string(package);
+    
+    
+
+end
+
+function dependencies = getDependencies(package)
+
+    pathToManifest = strcat(userpath,filesep,package,filesep,'Manifest.csv');
+    
+    if isfile(pathToManifest) % If the manifest file is in the current folder
+        
+        dependencies = readtable(pathToManifest);
+        dependencies = table2array(dependencies);
+                                                       
+    else
+        
+        dependencies = [];
+        
+    end
+
 end
 
 function getPackages(packageInfo,currentPackage)
