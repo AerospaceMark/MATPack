@@ -4,7 +4,7 @@
 function setAllToMain()
 
     disp(' ')
-    disp("Setting all packages to 'master'...")
+    disp("Setting all packages to 'main'...")
     disp(' ')
 
     directoryInfo = dir(userpath);

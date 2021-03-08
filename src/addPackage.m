@@ -6,9 +6,6 @@
 %       - pathToPackage = the cloning url
 %       - packageName = the name you want to give the package. If left
 %       empty, it defaults to the default cloning name.
-%
-% Author: Mark C. Anderson
-% Institution: Brigham Young University
 
 function addPackage(pathToPackage,packageName)
     

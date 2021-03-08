@@ -1,4 +1,7 @@
-% Purpose: to add to a manifest file, and create one if necessary
+% addToManifest(packageName,commitID,targetPackage,quietFlag)
+%
+% Purpose: to add a given package to the current package's manifest file.
+% If no manifest file is found, then one is created.
 
 function addToManifest(packageName,commitID,targetPackage,quietFlag)
     

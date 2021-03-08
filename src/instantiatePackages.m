@@ -1,5 +1,17 @@
 % Purpose: to take all of the packages in the 'Manifest.csv' file and check
 % them out at the proper commits
+% 
+% If the packages that you check out using this function also depend on
+% other functions as written in their respective manifest files, then those
+% are also automatically added. Note that this is only done once, so if the
+% dependencies have dependencies which have dependencies, those are not
+% added.
+%
+% Several potential errors are checked for and the user is alerted when
+% these are found. If you want the program to stop when conflicts are
+% discovered between manfest files, then set the 'catchIssues' variable to
+% false. If no arguments are passed, then the issues will cause alerts on
+% the screen but the code will proceed.
 
 function instantiatePackages(catchIssues)
     
@@ -164,6 +176,8 @@ function finalList = getFinalList(packageList,catchIssues)
                 
                 fprintf(2,['Unable to reconcile manifest files, please make sure',...
                            '\nversions are compatible.\n Aborting instantiatePackages...'])
+                       
+                break
             
             end
             
