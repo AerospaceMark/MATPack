@@ -1,7 +1,7 @@
 % Purpose: take all of the packages in the userpath and set them to the
 % master branch
 
-function setAllToMaster()
+function setAllToMain()
 
     disp(' ')
     disp("Setting all packages to 'master'...")
