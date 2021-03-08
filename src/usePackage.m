@@ -21,19 +21,23 @@ function usePackage(packageName,commitID,quietFlag)
             disp(strcat("Adding: ",strcat(userpath,filesep,packageName," at ",commitID)))
     end
     
-    % Seeing if the commitID given is equal to the commitID for the master
-    % branch
-    
     % Getting the current commit ID
     currentID = getCommitID(packageName);
     
-    % Checking out the master branch
-    eval(strcat("!git -C ",userpath,filesep,packageName," checkout ",commitID," -q"))
-    masterID = getCommitID(packageName);
+    % Finding out the master branch commit ID
+    if getCommitID(packageName,"main") ~= 0
+        mainID = getCommitID(packageName,"main");
+    elseif  getCommitID(packageName,"master") ~= 0
+        mainID = getCommitID(packageName,"master");
+    else
+        fprintf(2,strcat("\n\nNo main/master branch found for the '",...
+                  packageName,"' package. Please fix this.\n\n"))
+    end
+        
     
     % Comparing the current commitID to the master commitID
-    if currentID == masterID
-        commitID = "master";
+    if currentID == mainID
+        commitID = "main";
     else
         commitID = currentID;
     end
@@ -41,7 +45,37 @@ function usePackage(packageName,commitID,quietFlag)
     % Seeing if the package exists in the user directory (Documents/MATLAB)
     if isfolder(strcat(userpath,filesep,packageName))
         
-        eval(strcat("!git -C ",userpath,filesep,packageName," checkout ",commitID," -q"));
+        command = strcat("git -C ",userpath,filesep,packageName," checkout ",commitID," -q");
+        
+        [successFlag,output] = runSystemCommand(command,false);
+        
+        if ~successFlag
+            
+            % If you tried the 'main' branch and it didn't work, try
+            % 'master' instead
+            if strcmp(commitID,"main")
+                
+                commitID = "master";
+                command = strcat("git -C ",userpath,filesep,packageName," checkout ",commitID," -q");
+                [successFlag,output] = runSystemCommand(command,false);
+                
+                if ~successFlag
+                    
+                    fprintf(2,strcat("\nError checking out '",packageName,...
+                        "'.\nMATPack will add the folder at its current state\n"...
+                        ,"without checking out a commit. System output is:\n\n'",output,"'\n\n"))
+                    
+                end
+                
+            else
+            
+                fprintf(2,strcat("\nError checking out '",packageName,...
+                        "'.\nMATPack will add the folder at its current state\n"...
+                        ,"without checking out a commit. System output is:\n\n'",output,"'\n\n"))
+            end
+            
+        end
+        
         addpath(genpath(strcat(userpath,filesep,packageName)));
    
     else

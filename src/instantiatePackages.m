@@ -7,11 +7,11 @@ function instantiatePackages(catchIssues)
         catchIssues = false;
     end
 
-%     disp('Forgetting all packages in the userpath (except for MATPack) to give you a nice, clean slate...')
-%     forgetAllPackages()
-%     
-%     disp('Adding the packages that are specified in the Manfiest.csv file...')
-%     disp(' ')
+    disp('Forgetting all packages in the userpath (except for MATPack) to give you a nice, clean slate...')
+    forgetAllPackages()
+    
+    disp('Adding the packages that are specified in the Manfiest.csv file...')
+    disp(' ')
     
     % Getting the name of the current package
     currentPackage = getCurrentPackage; % The package from which you are
@@ -20,6 +20,12 @@ function instantiatePackages(catchIssues)
     packageList = getPackageList(currentPackage);
     
     finalList = getFinalList(packageList,catchIssues);
+    
+    if max(max(ismissing(finalList))) == 1
+        fprintf(2,['Unable to reconcile manifest files, please make sure',...
+                           '\nversions are compatible.\n\nAborting instantiatePackages...\n'])
+        return
+    end
     
     getPackages(finalList,currentPackage);
     
@@ -148,11 +154,12 @@ function finalList = getFinalList(packageList,catchIssues)
                 catchStatement = strcat("\n\t\tBecause the 'catchIssues' argument in\n\t\t",...
                                 "'instantiatePackages()' is set to FALSE,\n\t\t",...
                                 "we will use the value specified by ",...
-                                string(packageList(1,2)),"\n\t\t if possible.\n\n");
+                                string(packageList(1,2)),"\n\t\tif possible.\n\n");
                 fprintf(catchStatement)
                 
                 finalList(i,1) = packageList(i,1);
                 finalList(i,2) = packageList(i,2);
+                
             else
                 
                 fprintf(2,['Unable to reconcile manifest files, please make sure',...
