@@ -1,6 +1,7 @@
 # MATPack
 
-What if you could organize your MATLAB code into useful bundles and then easily incorporate those bundles into your other projects? MATPack enables you to create code `packages` that can be used within your other code by simply typing
+What if you could organize your MATLAB code into useful bundles and then easily incorporate that code into your other projects? What if you only had to write code once and could easily access it without manually adding it to your path?
+MATPack enables you to create code `packages` that can be added to your path simply by typing
 
 ```python
 usePackage 'package name'
@@ -8,9 +9,9 @@ usePackage 'package name'
 
 This enables you to organize your code in a way that is useful not only to you now, but also to your colleagues and future self.
 
-The idea of code packages is nothing new. In many programming languages, reusable code is bundled together into packages. Examples include [Python](https://www.python.org/), [Julia](https://julialang.org/), and [R](https://www.r-project.org/), where packages perform all kinds of tasks ranging from optimized linear algebra routines, to machine learning algorithms, to improved formatting for plots. MATLAB does not have a built-in way to have packages in the same sense as these other languages, and this is where MATPack comes into play.
+The idea of code packages is nothing new. In many programming languages, reusable code is bundled together into packages. Examples include [Python](https://www.python.org/), [Julia](https://julialang.org/), and [R](https://www.r-project.org/), where packages perform all kinds of tasks ranging from optimized linear algebra routines, to machine learning algorithms, to improved formatting for plots. MATLAB does not have a native way to handle packages in the same sense as these other languages, and this is where MATPack comes into play.
 
-MATPack is designed to give you the benefits of bundling your useful code into packages that can be called in other files and functions. For example, if you've written a lot of generalized signal processing code, you could put it into a package and call it as
+For example, if you've written a lot of generalized signal processing code, you could put it into a package and call it as
 
 ```python
 usePackage GeneralSignalProcessing
@@ -18,13 +19,13 @@ usePackage GeneralSignalProcessing
 
 where `GeneralSignalProcessing` is the name of the package. After executing this command, all of the code within that package becomes available to you.
 
-MATPack also enables sharing MATLAB packages through online Git repositories. To add a package from an online Git repository, simply type
+MATPack also enables sharing MATLAB packages through online Git repositories. To download a package from an online Git repository, simply type
 
 ```python
 addPackage 'insert cloning url'
 ```
 
-where the cloning url is replaced with the specific cloning url for the package you would like to add. Once you've added a package, it now becomes available to be "used" in your code.
+where the cloning url is replaced with the specific cloning url for the package you would like to add. Once you've downloaded a package, it now becomes available to be "used" in your code.
 
 In order to use MATPack, you need to install [Git command line tools](https://git-scm.com/). This means being able to execute Git commands in your local terminal (for MacOS and Linux users) or in your local command prompt ([for Windows users](https://stackoverflow.com/questions/11000869/command-line-git-on-windows)). To learn more about Git, consider looking at the manual [So, You Want To Use Git?](https://github.com/Mark-C-Anderson/So-You-Want-To-Use-Git).
 
@@ -33,14 +34,14 @@ In order to use MATPack, you need to install [Git command line tools](https://gi
 ## Installing and Using MATPack
 
 1. Clone this repository to your Documents/MATLAB folder. If that folder does not exist, go ahead and create it. This is where all packages will be stored.
-2. Type the following code into the command window:
+2. Paste the following code into the command window:
 
 ```python
 MATPack_path = genpath(strcat(userpath,filesep,"MATPack"));
 addpath(MATPack_path)
 ```
 
-If you want to avoid doing this every time you open MATLAB, then go to the same Documents/MATLAB folder and create a MATLAB file called `startup.m`. Paste the above code into that file. The `startup.m` file will automatically run every time you open MATLAB and automatically include MATPack for you.
+If you want to avoid doing this every time you open MATLAB, then go to the same Documents/MATLAB folder and create a MATLAB file called `startup.m`. Paste the above code into that file. The `startup.m` file will automatically run every time you open MATLAB and will automatically include MATPack for you.
 
 ## Typical Workflow
 
@@ -58,7 +59,7 @@ usePackage OptimizedRocket
 
 And there you go! All of the code in the `OptimizedRocket` package is now available for you to use.
 
-Imagine being able to build up your own packages, and use well-written packages by your colleagues in your code. Instead of manually adding each of the folders to your path, you simply can have a few lines at the top of your code, like so:
+Imagine being able to build up your own packages and use them in your code. Instead of manually adding each of the folders to your path, you simply can have a few lines at the top of your code, like so:
 
 ```python
 usePackage FancyPlots
