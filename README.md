@@ -13,78 +13,41 @@ where `GeneralSignalProcessing` is the name of the package. All of the code with
 MATPack also enables sharing MATLAB packages through online Git repositories. To add a package from an online Git repository, simply type
 
 ```python
-addPackage https://github.com/Mark-C-Anderson/OptimizedRocket.git
+addPackage 'insert cloning url'
 ```
 
 where the cloning url is replaced with the specific url for the package you would like to add. Once you've added a package, it now becomes available to be "used" in your other code.
 
 In order to use MATPack, you need to install Git command line tools. This means being able to execute Git commands in your local terminal (for MacOS and Linux users) or in your local command prompt ([for Windows users](https://stackoverflow.com/questions/11000869/command-line-git-on-windows)).
 
-# How to start using MATPack
+# Everything You Need to Know Right Now
+
+## Installing and Using MATPack
 
 1. Clone this repository to your Documents/MATLAB folder. This is where all packages will be stored.
-2. Make sure both the terminal (or command prompt) and MATLAB are closed.
-3. Open MATLAB
-4. Type the following code into the command window:
+2. Type the following code into the command window:
 
-```MATLAB
-%--- adding MATPack
+```python
 MATPack_path = genpath(strcat(userpath,filesep,"MATPack"));
 addpath(MATPack_path)
-clear('MATPack_path')
-disp('Added: MATPack (MATLAB Package Manager)')
 ```
 If you want to avoid doing this every time you open MATLAB, then go to the same Documents/MATLAB folder and create a MATLAB file called `startup.m`. Paste the above code into that file. The `startup.m` file will automatically run every time you open MATLAB and automatically include MATPack.
 
-# Typical Workflow
-## Getting and Using Packages
-```MATLAB
-addPackage('github.com/Joe/ArrayAnalysis') % add the package to your Documents/MATLAB folder
+## Typical Workflow
 
-usePackage('ArrayAnalysis') % makes the contents of 'ArrayAnalysis' available in your current MATLAB path
+To add a package to your computer, simply run the `addPackage` command, followed by the cloning url of the desired repository
+
+```python
+addPackage https://github.com/Mark-C-Anderson/OptimizedRocket.git
 ```
 
-## Working with Git
-```MATLAB
-updatePackage('ArrayAnalysis') % gets the latest updates in the online Git repository
+The above code clones the `OptimizedRocket` package to your Documents/MATLAB path. If you now want to use functions or scripts from the `OptimizedRocket` package in your current code, then you simply need to run the `usePackage` command, followed by the name of the package.
 
-%--- Let's pretend you made some changes to the 'ArrayAnalysis' package after updating it, and you want 
-%    those to be posted to the online Git repository
-
-packageStatus('ArrayAnalysis') % tells you what branch and commit you are currently on
-                               % as well as what changes have been made but not yet committed
-
-commitPackage('ArrayAnalysis','Improved function legibility') % stages and commits all of your latest 
-                                                              % changes with the commit message 
-                                                              % 'Improved function legibility'
-
-pushPackage('ArrayAnalysis') % pushes your commits to the online Git repository 
-                             % (assuming you have access to edit the online repository)                             
+```python
+usePackage OptimizedRocket
 ```
 
-## Removing Packages
-```MATLAB
-forgetPackage('ArrayAnalysis') % forgets the package from your current active path
-
-removePackage('ArrayAnalysis') % deletes a package completely from your computer
-```
-
-## Convenience
-```MATLAB
-openPackage('ArrayAnalysis') % Changes your current MATLAB path to be inside of the
-                             % 'ArrayAnalysis' package.
-                 
-setAllToMaster() % Checks out all of the packages within the userpath at the master 
-                 % branch
-                 
-forgetAllPackages() % Removes all of the packages in the userpath (Documents/MATLAB)
-                    % from the current MATLAB path
-                    
-updateAllPackages() % Updates all of the packages in your userpath
-
-updateAllManifests() % Updates all package manifest files within your userpath
-```
-
+If you want to create your own packages, simply store the code for each package as a Git repository within the Documents/MATLAB path on your computer. To learn more about Git, see the manual [So, You Want To Use Git?](https://github.com/Mark-C-Anderson/So-You-Want-To-Use-Git).
 # Working with Manifest Files
 
 ## Creating a Manifest File
