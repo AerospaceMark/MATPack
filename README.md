@@ -18,7 +18,7 @@ addPackage 'insert cloning url'
 
 where the cloning url is replaced with the specific url for the package you would like to add. Once you've added a package, it now becomes available to be "used" in your other code.
 
-In order to use MATPack, you need to install Git command line tools. This means being able to execute Git commands in your local terminal (for MacOS and Linux users) or in your local command prompt ([for Windows users](https://stackoverflow.com/questions/11000869/command-line-git-on-windows)).
+In order to use MATPack, you need to install Git command line tools. This means being able to execute Git commands in your local terminal (for MacOS and Linux users) or in your local command prompt ([for Windows users](https://stackoverflow.com/questions/11000869/command-line-git-on-windows)). To learn more about Git, see the manual [So, You Want To Use Git?](https://github.com/Mark-C-Anderson/So-You-Want-To-Use-Git).
 
 # Everything You Need to Know Right Now
 
@@ -47,7 +47,22 @@ The above code clones the `OptimizedRocket` package to your Documents/MATLAB pat
 usePackage OptimizedRocket
 ```
 
+And there you go! All of the code in the `OptimizedRocket` package is now available for you to use in whatever directory you are using.
+
+Imagine being able to build up your own packages, and use well-written packages by your colleagues in your code. Instead of manually adding each of the folders to your path, you simply can have a few lines at the top of your code, like so:
+
+```python
+usePackage FancyPlots
+usePackage FourierAnalysis
+usePackage LinearAlgebraSuite
+usePackage TurbulentFlow
+usePackage NumericalDerivatives
+```
+
 If you want to create your own packages, simply store the code for each package as a Git repository within the Documents/MATLAB path on your computer. To learn more about Git, see the manual [So, You Want To Use Git?](https://github.com/Mark-C-Anderson/So-You-Want-To-Use-Git).
+
+And tha's all you need to know to start using MATPack to improve your work! This will definitely be a huge benefit to you as you continue to organize your work and become more productive. Using packages will help you maintain cleaner code with a higher degree of reproducibility.
+
 # Working with Manifest Files
 
 ## Creating a Manifest File
