@@ -75,10 +75,10 @@ And that's all you need to know to start using MATPack! Think of all the places 
 
 The above mini-tutorial contains everything you need to know to immediately up your coding game in MATLAB. However, MATPack not only helps you organize and use your code better, it also enables **full reproducibility**.
 
-Imagine a world where you can exactly replicate results from six months ago. MATPack enables this by using a [Julia-inspired](https://docs.julialang.org/en/v1/stdlib/Pkg/) system of keeping track of which package versions are being used. All you have to do is tell MATPack which package versions you want to use and MATPack will automatically remember this and be able to use the proper versions. This is kept track of as a `Manifest.csv` file within each package.
+Imagine a world where you can exactly replicate results from six months ago. MATPack enables this by using a [Julia-inspired](https://docs.julialang.org/en/v1/stdlib/Pkg/) system of keeping track of which package versions are being used. All you have to do is tell MATPack which package versions you want to use and MATPack will automatically remember this and be able to use the proper versions. This is kept track of in a `Manifest.csv` file within each package.
 
 ## What is a Manifest File?
-A `Manifest.csv` file contains a list of packages that your current code (or package) depends on. A package upon which your code depends on is called a `dependency` (ie. if the 'TurbulentFlow' package needs to use the 'NumericalDerivatives' package in order to function properly, then 'NumericalDerivatives' is a dependency of 'TurbulentFlow'). In addition to a list of package names, the manifest file also contains a Git commit ID for each package. The reason that this is useful is because you can run the `instantiatePackages` command (discussed below) to automatically check out each commit of each package that your code depends on. This means that you could check out your code exactly as it was six months or even two years ago!
+A `Manifest.csv` file contains a list of packages that your current code (or package) depends on. A package upon which your code depends on is called a `dependency` (ie. if the 'TurbulentFlow' package needs to use the 'NumericalDerivatives' package in order to function properly, then 'NumericalDerivatives' is a dependency of 'TurbulentFlow'). In addition to a list of package names, the manifest file also contains a Git commit ID for each package. The reason that this is useful is that you can run the `instantiatePackages` command (discussed below) to automatically check out each commit of each package that your code depends on. This means that you could check out your code and all of its dependencies exactly as they were six months or even two years ago!
 
 ## Creating a Manifest File
 A `Manifest` file contains a list of packages and commit IDs. This enables full reproducibility in your code, even if different packages have changed over time. For example, the 'ArrayAnalysis' package might be structured like so:
@@ -150,6 +150,32 @@ updateManifest
 You must be in the same folder as the manifest file. This function will find out the commit ID for the top of the main branch for each package in the manifest file and update the manifest file with the corresponding commtit IDs. This is different than using the `main` option when adding packages to the manifest file because the actual commit ID is used and therefore the manifest file will not track changes in the master branch of the dependencies, and you will need to update the manifest file as pertinent changes are made to the dependencies.
 
 If you only want to update one package in the manifest file, simply run the `addToManifest` command again, denoting the dependency that you would like to update, and MATPack will replace the commitID within the manifest file.
+
+# Additional Useful Functions
+
+If you want to update a package, use the `updatePackage` command, like so:
+
+```python
+updatePackage TurbulentFlow
+```
+
+If you'd like to update all packages, use the `updateAllPackages` command:
+
+```python
+updateAllPackages
+```
+
+If you'd like to update all of the manifest files for all of your packages simultaneously, use the `updateAllManifests` command. This is not encouraged because it then becomes easy to accidentally update a manifest file that you didn't want to update. It is run as
+
+```python
+updateAllManifests
+```
+
+If you'd like to navigate to the folder containing a particular package, use the `openPackage` command, followed by the name of the package:
+
+```python
+openPackage AirfoilAnalyzer
+```
 
 # Answers to Questions You May Have
 
