@@ -147,7 +147,7 @@ When you know that you have made several changes to the packages upon which your
 updateManifest
 ```
 
-You must be in the same folder as the manifest file. This function will find out the commit ID for the top of the main branch for each package in the manifest file and update the manifest file with the corresponding commtit IDs. This is different than using the `main` option when adding packages to the manifest file because the actual commit ID is used and therefore the manifest file will not track changes in the master branch of the dependencies, and you will need to update the manifest file as pertinent changes are made to the dependencies.
+You must be in the same folder as the manifest file or specify the name of the package whose manifest file you want to update. This function will find out the commit ID for the top of the main branch for each package in the manifest file and update the manifest file with the corresponding commtit IDs. This is different than using the `main` option when adding packages to the manifest file because the actual commit ID is used and therefore the manifest file will not track changes in the master branch of the dependencies, and you will need to update the manifest file as pertinent changes are made to the dependencies.
 
 If you only want to update one package in the manifest file, simply run the `addToManifest` command again, denoting the dependency that you would like to update, and MATPack will replace the commitID within the manifest file.
 
