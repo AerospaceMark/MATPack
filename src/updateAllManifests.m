@@ -19,8 +19,8 @@ function updateAllManifests()
         
         pathToPackage = strcat(userpath,filesep,directoryInfo(i).name);
         if isfolder(strcat(pathToPackage,filesep,'.git'))
-            cd(pathToPackage)
-            updateManifest
+            package = directoryInfo(i).name;
+            updateManifest(package)
         end
         
     end

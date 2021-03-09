@@ -1,7 +1,10 @@
-% Get the commit ID of a package. If the 'topOfBranch' is given a branch
-% name, then the top of that branch is called.
-
+<<<<<<< Updated upstream
 function commitID = getCommitID(packageName,topOfBranch)
+=======
+% 
+
+function commitID = getCommitID(packageName)
+>>>>>>> Stashed changes
 
     if nargin < 2
         filename = strcat(userpath,filesep,packageName,filesep,'.git/logs/HEAD');

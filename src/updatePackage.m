@@ -4,6 +4,15 @@
 function updatePackage(packageName)
     
     packageName = convertCharsToStrings(packageName);
-    eval(strcat("!git -C ",userpath,filesep,packageName," pull"));
+    command = strcat("git -C ",userpath,filesep,packageName," pull");
+    
+    [successFlag, output] = runSystemCommand(command,false);
+        
+    if ~successFlag
+
+        disp(strcat('Error while updating the ',packageName,' package. System output is:'))
+        disp(output)
+
+    end
 
 end

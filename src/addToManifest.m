@@ -1,20 +1,25 @@
-% Purpose: to add to a manifest file, and create one if necessary
+% addToManifest(packageName,commitID,targetPackage,quietFlag)
+%
+% Purpose: to add a given package to the current package's manifest file.
+% If no manifest file is found, then one is created.
 
-function addToManifest(packageName,commitID,quietFlag)
+function addToManifest(packageName,commitID,targetPackage,quietFlag)
     
-    if nargin < 3
+    if nargin < 4
         quietFlag = false;
     end
-
-    % Getting the name of the current package
-    currentPackage = getCurrentPackage; % The package from which you are
-                                            % calling the manifest file
     
-    pathToManifest = strcat(userpath,filesep,currentPackage,filesep,'Manifest.csv');
-
+    if nargin < 3 % If the target package is not specified
+        % Getting the name of the current package
+        targetPackage = getCurrentPackage; % The package from which you are
+                                            % calling the manifest file
+    end
+    
     if nargin < 2
         commitID = 'current';
     end
+    
+    pathToManifest = strcat(userpath,filesep,targetPackage,filesep,'Manifest.csv');
     
     if strcmp(commitID,'current') % Get the information from within the .git folder
         commitID = getCommitID(packageName);
@@ -23,8 +28,9 @@ function addToManifest(packageName,commitID,quietFlag)
     packageName = string(packageName);
     commitID = string(commitID);
 
-    if ~isfile(pathToManifest) % If the manifest file is in the current folder
+    if ~isfile(pathToManifest) % If the manifest file does not exist
         
+        % Create the manifest file
         fid = fopen(pathToManifest,'a');
         fprintf(fid,'%s,','Package Name');
         fprintf(fid,'%s','Commit ID');
@@ -39,7 +45,11 @@ function addToManifest(packageName,commitID,quietFlag)
     isPackage = false;
     for i = 1:height(manifest)
         
+        % If the package you are trying to add already exists in the
+        % manifest file, then just replace that line in the file with the
+        % proper commit ID
         if strcmp(manifest{i,1},string(packageName))
+            
             isPackage = true;
             manifest{i,2} = {packageData(2)};
             
