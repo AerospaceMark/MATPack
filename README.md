@@ -189,6 +189,14 @@ If you'd like to navigate to the folder containing a particular package, use the
 openPackage AirfoilAnalyzer
 ```
 
+If you'd like to set all of your packages to their respective main/master branches, type the following
+
+```python
+setAllToMain
+```
+
+This command may fail if you have made changes to files in a particular package that have not yet been committed.
+
 # Answers to Questions You May Have
 
 * "Will I become the person at work whose code is now useless for everyone else?"
