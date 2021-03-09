@@ -6,7 +6,9 @@ What if you could organize your MATLAB code into useful bundles and then easily 
 usePackage 'package name'
 ```
 
-This enables you to organize your code in a way that is useful not only to you now, but also to your colleagues and future self. The idea of code packages is nothing new. In many programming languages, reusable code is bundled together into packages. Examples include [Python](https://www.python.org/), [Julia](https://julialang.org/), and [R](https://www.r-project.org/). These packages perform all kinds of tasks ranging from optimized linear algebra routines, to machine learning algorithms, to improved formatting for plots. MATLAB does not have a built-in way to have packages in the same sense as these other languages, and this is where MATPack comes into play.
+This enables you to organize your code in a way that is useful not only to you now, but also to your colleagues and future self.
+
+The idea of code packages is nothing new. In many programming languages, reusable code is bundled together into packages. Examples include [Python](https://www.python.org/), [Julia](https://julialang.org/), and [R](https://www.r-project.org/), where packages perform all kinds of tasks ranging from optimized linear algebra routines, to machine learning algorithms, to improved formatting for plots. MATLAB does not have a built-in way to have packages in the same sense as these other languages, and this is where MATPack comes into play.
 
 MATPack is designed to give you the benefits of bundling your useful code into packages that can be called in other files and functions. For example, if you've written a lot of generalized signal processing code, you could put it into a package and call it as
 
@@ -24,7 +26,7 @@ addPackage 'insert cloning url'
 
 where the cloning url is replaced with the specific cloning url for the package you would like to add. Once you've added a package, it now becomes available to be "used" in your code.
 
-In order to use MATPack, you need to install Git command line tools. This means being able to execute Git commands in your local terminal (for MacOS and Linux users) or in your local command prompt ([for Windows users](https://stackoverflow.com/questions/11000869/command-line-git-on-windows)). To learn more about Git, you may look at the manual [So, You Want To Use Git?](https://github.com/Mark-C-Anderson/So-You-Want-To-Use-Git).
+In order to use MATPack, you need to install [Git command line tools](https://git-scm.com/). This means being able to execute Git commands in your local terminal (for MacOS and Linux users) or in your local command prompt ([for Windows users](https://stackoverflow.com/questions/11000869/command-line-git-on-windows)). To learn more about Git, consider looking at the manual [So, You Want To Use Git?](https://github.com/Mark-C-Anderson/So-You-Want-To-Use-Git).
 
 # Everything You Need to Know Right Away
 
@@ -66,9 +68,7 @@ usePackage FourierAnalysis
 usePackage TurbulentFlow
 ```
 
-And tha's all you need to know to start using MATPack to improve your work! This will definitely be a huge benefit to you as you continue to organize your work and become more productive. Using packages will help you maintain cleaner code with a higher degree of reproducibility.
-
-To learn more about Git, see the manual [So, You Want To Use Git?](https://github.com/Mark-C-Anderson/So-You-Want-To-Use-Git).
+And that's all you need to know to start using MATPack! Think of all the places you could go if code only had to be written once, and could then be called as a package when needed later. Think of the time you will save the the improved productivity your team can have when collaborating on packages to move your work forward.
 
 # Enabling Full Reproducibility
 
