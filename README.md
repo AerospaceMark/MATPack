@@ -1,7 +1,22 @@
 # MATPack
-Welcome to the MATLAB Package Manager!
 
-MATPack is designed to make designing packages in MATLAB very user-friendly. The original motivation for MATPack came while working in a research group at Brigham Young University. We decided that we wanted to bundle our useful code into packages that future students and professors could easily access and use, very similar to Python and Julia packages and libraries.
+In many programming languages, reusable code is bundled together into packages. Examples include [Python](https://www.python.org/), [Julia](https://julialang.org/), and [R](https://www.r-project.org/). These packages perform all kinda of tasks ranging from optimized linear algebra routines, to machine learning algorithms, to improved formatting for plots. MATLAB does not have a built-in way to have packages in the same way as these other languages, and this is where MATPack enters the scene.
+
+MATPack is designed to give you the benefits of bundling your useful code into callable packages. For example, if you had written a lot of generalized signal processing code, you could put it into a package and call it as
+
+```python
+usePackage GeneralSignalProcessing
+```
+
+where `GeneralSignalProcessing` is the name of the package. All of the code within that package suddenly becomes available to you in whatever directory you are using.
+
+MATPack also enables sharing MATLAB packages through online Git repositories. To add a package from an online Git repository, simply type
+
+```python
+addPackage https://github.com/Mark-C-Anderson/OptimizedRocket.git
+```
+
+where the cloning url is replaced with the specific url for the package you would like to add. Once you've added a package, it now becomes available to be "used" in your other code.
 
 In order to use MATPack, you need to install Git command line tools. This means being able to execute Git commands in your local terminal (for MacOS and Linux users) or in your local command prompt ([for Windows users](https://stackoverflow.com/questions/11000869/command-line-git-on-windows)).
 
