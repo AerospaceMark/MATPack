@@ -189,7 +189,11 @@ openPackage AirfoilAnalyzer
 
 Go ahead and submit a GitHub issue to notify the developer. If you'd like, go ahead and fork this repository, fix the issue, and submit a pull request.
 
-MIT License
+## License Information
+
+This project is open-source and applies the following License:
+
+"MIT License
 
 Copyright (c) 2021 Mark-C-Anderson
 
@@ -209,4 +213,6 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+SOFTWARE."
+
+[See this link](https://www.freecodecamp.org/news/how-open-source-licenses-work-and-how-to-add-them-to-your-projects-34310c3cf94/) for more information on open-source licenses.
