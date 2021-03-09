@@ -68,7 +68,7 @@ usePackage FourierAnalysis
 usePackage TurbulentFlow
 ```
 
-And that's all you need to know to start using MATPack! Think of all the places you could go if code only had to be written once, and could then be called as a package when needed later. Think of the time you will save the the improved productivity your team can have when collaborating on packages to move your work forward.
+And that's all you need to know to start using MATPack! Think of all the places you could go if code only had to be written once, and could then be called as a package when needed later. Think of the time you will save and the improved productivity your team can have when collaborating on packages to move your work forward.
 
 # Enabling Full Reproducibility
 
