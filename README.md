@@ -11,7 +11,7 @@ This enables you to organize your code in a way that is useful not only to you n
 
 The idea of code packages is nothing new. In many programming languages, reusable code is bundled together into packages. Examples include [Python](https://www.python.org/), [Julia](https://julialang.org/), and [R](https://www.r-project.org/), where packages perform all kinds of tasks ranging from optimized linear algebra routines, to machine learning algorithms, to improved formatting for plots. MATLAB does not have a native way to handle packages in the same sense as these other languages, and this is where MATPack comes into play.
 
-For example, if you've written a lot of generalized signal processing code, you could put it into a package and call it as
+For example, if you've written a lot of generalized signal processing code, you could put it into a package and then add it to your current MATLAB path by typing
 
 ```python
 usePackage GeneralSignalProcessing
@@ -78,7 +78,7 @@ The above mini-tutorial contains everything you need to know to immediately up y
 Imagine a world where you can exactly replicate results from six months ago. MATPack enables this by using a [Julia-inspired](https://docs.julialang.org/en/v1/stdlib/Pkg/) system of keeping track of which package versions are being used. All you have to do is tell MATPack which package versions you want to use and MATPack will automatically remember this and be able to use the proper versions. This is kept track of in a `Manifest.csv` file within each package.
 
 ## What is a Manifest File?
-A `Manifest.csv` file contains a list of packages that your current code (or package) depends on. A package upon which your code depends on is called a `dependency` (ie. if the 'TurbulentFlow' package needs to use the 'NumericalDerivatives' package in order to function properly, then 'NumericalDerivatives' is a dependency of 'TurbulentFlow'). In addition to a list of package names, the manifest file also contains a Git commit ID for each package. The reason that this is useful is that you can run the `instantiatePackages` command (discussed below) to automatically check out each commit of each package that your code depends on. This means that you could check out your code and all of its dependencies exactly as they were six months or even two years ago!
+A `Manifest.csv` file contains a list of packages that your current code (or package) depends on. A package upon which your code depends on is called a `dependency` (ie. if the 'TurbulentFlow' package needs to use the 'NumericalDerivatives' package in order to function properly, then 'NumericalDerivatives' is a dependency of 'TurbulentFlow'). In addition to a list of package names, the manifest file also contains a Git commit ID for each package. The reason that this is useful is that you can run the `instantiatePackages` command (discussed below) to automatically check out each commit of each package that your code depends on. This means that you could use your code and all of its dependencies exactly as they were six months or even two years ago!
 
 ## Creating a Manifest File
 A `Manifest` file contains a list of packages and commit IDs. This enables full reproducibility in your code, even if different packages have changed over time. For example, the 'ArrayAnalysis' package might be structured like so:
@@ -169,6 +169,18 @@ If you'd like to update all of the manifest files for all of your packages simul
 
 ```python
 updateAllManifests
+```
+
+If you've used a package and would now like to forget it from your MATLAB path, then use the `forgetPackage` command, indicating which package to forget:
+
+```python
+forgetPackage OrbitalMechanics
+```
+
+If you'd like to forget all packages from your path, use the `forgetAllPackages` command:
+
+```python
+forgetAllPackages
 ```
 
 If you'd like to navigate to the folder containing a particular package, use the `openPackage` command, followed by the name of the package:
