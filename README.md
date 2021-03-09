@@ -153,7 +153,7 @@ If you only want to update one package in the manifest file, simply run the `add
 
 # Additional Useful Functions
 
-If you want to update a package, use the `updatePackage` command, like so:
+If you want to update a package to the latest version on its online Git repository, use the `updatePackage` command, like so:
 
 ```python
 updatePackage TurbulentFlow
