@@ -19,8 +19,12 @@ function addToManifest(packageName,commitID,targetPackage,quietFlag)
         commitID = 'current';
     end
     
-    pathToManifest = strcat(userpath,filesep,targetPackage,filesep,'Manifest.csv');
-    
+    if contains(targetPackage,filesep)
+        pathToManifest = strcat(targetPackage,filesep,'Manifest.csv');
+    else
+        pathToManifest = strcat(userpath,filesep,targetPackage,filesep,'Manifest.csv');
+    end
+        
     if strcmp(commitID,'current') % Get the information from within the .git folder
         commitID = getCommitID(packageName);
     end
@@ -32,8 +36,8 @@ function addToManifest(packageName,commitID,targetPackage,quietFlag)
         
         % Create the manifest file
         fid = fopen(pathToManifest,'a');
-        fprintf(fid,'%s,','Package Name');
-        fprintf(fid,'%s','Commit ID');
+        fprintf(fid,'%s,','PackageName');
+        fprintf(fid,'%s','CommitID');
         fclose(fid);
         
     end

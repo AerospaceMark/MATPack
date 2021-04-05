@@ -13,5 +13,10 @@ function packageName = getCurrentPackage()
     else
         packageName = fullPackageName(1:end);
     end
+    
+    % Enabling the current directory to not be a package in its own right
+    if isempty(packageName)
+        packageName = pwd();
+    end
 
 end

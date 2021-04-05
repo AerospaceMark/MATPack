@@ -13,7 +13,11 @@ function updateManifest(package,commit)
                                                 % calling the manifest file
     end
     
-    pathToManifest = strcat(userpath,filesep,package,filesep,'Manifest.csv');
+    if contains(package,filesep)
+        pathToManifest = strcat(package,filesep,'Manifest.csv');
+    else
+        pathToManifest = strcat(userpath,filesep,package,filesep,'Manifest.csv');
+    end
     
     if isfile(pathToManifest)
         manifest = readtable(pathToManifest,'delimiter',',');

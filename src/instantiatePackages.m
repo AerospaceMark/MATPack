@@ -42,7 +42,14 @@ function instantiatePackages(catchIssues)
     getPackages(finalList,currentPackage);
     
     % Adding the current path
-    pathToCurrentPackage = strcat(userpath,filesep,currentPackage);
+    
+    if contains(currentPackage,filesep)
+        pathToCurrentPackage = currentPackage;
+    else
+        pathToCurrentPackage = strcat(userpath,filesep,currentPackage);
+    end
+    
+    
     disp(strcat("Adding: ",pathToCurrentPackage," at it's current state (not a commit)"));
     addpath(genpath(pathToCurrentPackage));
     
@@ -122,7 +129,11 @@ end
 
 function dependencies = getDependencies(package)
 
-    pathToManifest = strcat(userpath,filesep,package,filesep,'Manifest.csv');
+    if contains(package,filesep)
+        pathToManifest = strcat(package,filesep,'Manifest.csv');
+    else
+        pathToManifest = strcat(userpath,filesep,package,filesep,'Manifest.csv');
+    end
     
     if isfile(pathToManifest) % If the manifest file is in the current folder
         
