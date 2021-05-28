@@ -17,9 +17,7 @@ function usePackage(packageName,commitID,quietFlag)
         quietFlag = false;
     end
     
-    if ~quietFlag
-            disp(strcat("Adding: ",strcat(userpath,filesep,packageName," at ",commitID)))
-    end
+
     
     % Getting the current commit ID
     currentID = getCommitID(packageName);
@@ -36,10 +34,16 @@ function usePackage(packageName,commitID,quietFlag)
         
     
     % Comparing the current commitID to the master commitID
-    if currentID == mainID
+    if strcmp(currentID,mainID) && nargin < 2
         commitID = "main";
-    else
+    elseif nargin < 2
         commitID = currentID;
+    else % else if a specific commitID was given
+        commitID = commitID;
+    end
+    
+    if ~quietFlag
+        disp(strcat("Adding: ",strcat(userpath,filesep,packageName," at ",commitID)))
     end
 
     % Seeing if the package exists in the user directory (Documents/MATLAB)
