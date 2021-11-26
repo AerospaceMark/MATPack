@@ -42,7 +42,7 @@ function setAllToMain()
     end
     
     disp(' ')
-    disp("Done setting all packages to 'master'.")
+    disp("Done setting all packages to 'main/master'.")
     disp(' ')
 
 end

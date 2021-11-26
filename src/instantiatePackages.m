@@ -132,7 +132,8 @@ function dependencies = getDependencies(package)
     if contains(package,filesep)
         pathToManifest = strcat(package,filesep,'Manifest.csv');
     else
-        pathToManifest = strcat(userpath,filesep,package,filesep,'Manifest.csv');
+        % pathToManifest = strcat(userpath,filesep,package,filesep,'Manifest.csv');
+        pathToManifest = strcat(pwd(),filesep,'Manifest.csv');
     end
     
     if isfile(pathToManifest) % If the manifest file is in the current folder

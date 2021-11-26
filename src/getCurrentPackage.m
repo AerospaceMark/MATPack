@@ -11,7 +11,7 @@ function packageName = getCurrentPackage()
     if length(separators) > 0 % If there is a separator
         packageName = fullPackageName(1:separators(1)-1);
     else
-        packageName = fullPackageName(1:end);
+        packageName = pwd();
     end
     
     % Enabling the current directory to not be a package in its own right
