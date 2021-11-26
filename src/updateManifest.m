@@ -1,22 +1,22 @@
 % Purpose: To create an easy way to update all of the package commit IDs to
 % the top of the master branch
 
-function updateManifest(package,commit)
+function updateManifest(targetPath,commit)
 
     if nargin < 2
         commit = false;
     end
 
-    if nargin < 1 % If no package is specified, use the current package
-        % Getting the name of the current package
-        package = getCurrentPackage; % The package from which you are
+    if nargin < 1 % If no path is specified, use the current path
+        % Getting the name of the current path
+        targetPath = pwd(); % The path from which you are
                                                 % calling the manifest file
     end
     
-    if contains(package,filesep)
-        pathToManifest = strcat(package,filesep,'Manifest.csv');
+    if contains(targetPath,filesep)
+        pathToManifest = strcat(targetPath,filesep,'Manifest.csv');
     else
-        pathToManifest = strcat(userpath,filesep,package,filesep,'Manifest.csv');
+        pathToManifest = strcat(userpath,filesep,targetPath,filesep,'Manifest.csv');
     end
     
     if isfile(pathToManifest)
@@ -38,21 +38,21 @@ function updateManifest(package,commit)
                     catch
                         disp(['Failed to update the ',packageName{1},...
                               ' package in the Manifest.csv file for the',...
-                              package,' package.'])
+                              targetPath,' package.'])
                     end
                 end
             end
             
-            addToManifest(packageName{1},commitID,package,true);
+            addToManifest(packageName{1},commitID,targetPath,true);
 
         end
         
-        disp(strcat("Updated 'Manifest.csv' in the '",package,"' package."))
+        disp(strcat("Updated 'Manifest.csv' in the '",targetPath,"' path."))
         
         % Make this update a commit
         if commit == true
             
-            command = strcat("git -C ",userpath,filesep,package," add Manifest.csv");
+            command = strcat("git -C ",userpath,filesep,targetPath," add Manifest.csv");
             
             [successFlag, output] = runSystemCommand(command,true);
         
@@ -64,7 +64,7 @@ function updateManifest(package,commit)
 
             end
             
-            command = strcat("git -C ",userpath,filesep,package," commit -m ",'"',"Automatic_Update_Manifest.csv",'"');
+            command = strcat("git -C ",userpath,filesep,targetPath," commit -m ",'"',"Automatic_Update_Manifest.csv",'"');
             
             [successFlag, output] = runSystemCommand(command,true);
         
@@ -78,7 +78,7 @@ function updateManifest(package,commit)
         end
         
     else
-        disp(strcat("No Manifest file detected for the '",package,"' package."))
+        disp(strcat("No Manifest file detected for the '",targetPath,"' path."))
     end
 
 end
