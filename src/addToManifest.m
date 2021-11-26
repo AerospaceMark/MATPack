@@ -1,9 +1,9 @@
 % addToManifest(packageName,commitID,targetPackage,quietFlag)
 %
-% Purpose: to add a given package to the current package's manifest file.
+% Purpose: to add a given package to the current path's manifest file.
 % If no manifest file is found, then one is created.
 
-function addToManifest(packageName,commitID,targetPackage,quietFlag)
+function addToManifest(packageName,commitID,targetPath,quietFlag)
     
     if nargin < 4
         quietFlag = false;
@@ -11,18 +11,18 @@ function addToManifest(packageName,commitID,targetPackage,quietFlag)
     
     if nargin < 3 % If the target package is not specified
         % Getting the name of the current package
-        targetPackage = getCurrentPackage; % The package from which you are
-                                            % calling the manifest file
+        targetPath = pwd(); % The path from which you are
+                            % calling the manifest file
     end
     
     if nargin < 2
         commitID = 'current';
     end
     
-    if contains(targetPackage,filesep)
-        pathToManifest = strcat(targetPackage,filesep,'Manifest.csv');
+    if contains(targetPath,filesep)
+        pathToManifest = strcat(targetPath,filesep,'Manifest.csv');
     else
-        pathToManifest = strcat(userpath,filesep,targetPackage,filesep,'Manifest.csv');
+        pathToManifest = strcat(userpath,filesep,targetPath,filesep,'Manifest.csv');
     end
         
     if strcmp(commitID,'current') % Get the information from within the .git folder
