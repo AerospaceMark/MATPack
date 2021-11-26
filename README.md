@@ -1,4 +1,4 @@
-# MATPack v2.2.0
+# MATPack
 
 What if you could organize your MATLAB code into useful bundles and then easily incorporate that code into your other projects? What if you only had to write code once and could easily access it without manually adding it to your path?
 MATPack enables you to create code `packages` that can be added to your path simply by typing
