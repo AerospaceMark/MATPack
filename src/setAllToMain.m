@@ -4,7 +4,7 @@
 function setAllToMain()
 
     disp(' ')
-    disp("Setting all packages to 'main'...")
+    disp("Setting all packages to 'main/master'...")
     disp(' ')
 
     directoryInfo = dir(userpath);
@@ -14,7 +14,7 @@ function setAllToMain()
         path = strcat(userpath,filesep,directoryInfo(i).name,filesep,'.git');
         
         if isfolder(path)
-            disp(strcat("Setting the '",directoryInfo(i).name,"' package to main."))
+            disp(strcat("Setting the '",directoryInfo(i).name,"' package to main/master."))
             
             command = strcat("git -C ",userpath,filesep,directoryInfo(i).name," checkout main");
             
