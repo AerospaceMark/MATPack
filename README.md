@@ -236,3 +236,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE."
 
 [See this link](https://www.freecodecamp.org/news/how-open-source-licenses-work-and-how-to-add-them-to-your-projects-34310c3cf94/) for more information on open-source licenses.
+
+When I (Mark C. Anderson) wrote this software, I was a paid research student at Brigham Young University. Should this run into intellectual property concerns, I will happily discuss solutions with BYU. Thanks!
